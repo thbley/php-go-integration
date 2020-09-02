@@ -1,4 +1,4 @@
-PHP Example to integrate Go using PHP-FFI
+PHP example to integrate Go using PHP-FFI
 ------------------------------------------
 
 Go is a statically typed, compiled programming language that offers more performance and concurrency.
@@ -19,7 +19,7 @@ Usage:
 
     go build -o ackermann.so -buildmode=c-shared ackermann.go
 
-    php ackermann.php
+    php -dffi.enable=1 ackermann.php
 
 Example output:
 
@@ -43,3 +43,9 @@ Notes:
 PHP-FFI can automatically convert basic Go types (long, char*) into PHP types.
 For using more complex data structures, I'm also providing an example (ackermann_json())
 using JSON strings as input and output.
+
+References
+
+- https://www.php.net/manual/en/book.ffi.php
+- http://snowsyn.net/2016/09/11/creating-shared-libraries-in-go/
+- https://blog.claudiupersoiu.ro/2019/12/23/a-bit-of-php-go-ffi-and-holiday-spirit/lang/en/

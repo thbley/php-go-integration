@@ -34,11 +34,18 @@ func ackermann(n int, m int) int {
 //export ackermann_json
 func ackermann_json(input *C.char) *C.char {
 	var params [2]int
-	json.Unmarshal([]byte(C.GoString(input)), &params)
+
+	err := json.Unmarshal([]byte(C.GoString(input)), &params)
+	if err != nil {
+        panic(err)
+    }
 
 	result := ackermann(params[0], params[1])
 
-	data, _ := json.Marshal(result)
+	data, err := json.Marshal(result)
+    if err != nil {
+        panic(err)
+    }
 
 	return C.CString(string(data))
 }
