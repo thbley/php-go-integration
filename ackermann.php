@@ -32,7 +32,7 @@
  * Combining PHP and Go gives a lot of new opportunities.
  *
  * Writing and integrating PHP extensions based on C/C++ can be difficult and time consuming.
- * This can be made easier and more flexible using Go and PHP-FFI.
+ * This can be made easier and more flexible using Go libraries and PHP-FFI.
  */
 
 error_reporting(E_ALL);

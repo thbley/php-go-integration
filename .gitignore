@@ -1,2 +1,5 @@
 *.so
 *.h
+.buildpath
+.project
+.settings/
