@@ -37,15 +37,15 @@ func ackermann_json(input *C.char) *C.char {
 
 	err := json.Unmarshal([]byte(C.GoString(input)), &params)
 	if err != nil {
-        panic(err)
-    }
+		panic(err)
+	}
 
 	result := ackermann(params[0], params[1])
 
 	data, err := json.Marshal(result)
-    if err != nil {
-        panic(err)
-    }
+	if err != nil {
+		panic(err)
+	}
 
 	return C.CString(string(data))
 }
