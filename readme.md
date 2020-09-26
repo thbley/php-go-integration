@@ -21,6 +21,12 @@ Usage:
 
     php -dffi.enable=1 ackermann.php
 
+    or:
+
+    docker build -t php-ffi .
+    docker run -it --rm -v $(pwd):/code php-ffi php /code/ackermann.php
+
+
 Example output:
 
     PHP
@@ -36,7 +42,7 @@ Example output:
 Requirements:
 
     Go package (https://golang.org/dl/)
-    PHP 7.4+
+    PHP 7.4+ with FFI extension enabled
 
 Notes:
 
