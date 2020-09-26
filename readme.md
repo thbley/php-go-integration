@@ -26,7 +26,6 @@ Usage:
     docker build -t php-ffi .
     docker run -it --rm -v $(pwd):/code php-ffi php /code/ackermann.php
 
-
 Example output:
 
     PHP

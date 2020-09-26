@@ -59,7 +59,7 @@ $start = microtime(true);
 echo 'Go' . PHP_EOL;
 echo '- result: ' . $ffi->ackermann(3, 11) . PHP_EOL;
 echo '- time: ' . number_format(microtime(true) - $start, 4) . 's' . PHP_EOL;
-
+unset($ffi);
 
 $ffi = FFI::cdef('char* ackermann_json(char* p0);', __DIR__ . '/ackermann.so');
 
@@ -68,3 +68,5 @@ $result = $ffi->ackermann_json(json_encode([3, 11]));
 echo 'Go (using json as input/output)' . PHP_EOL;
 echo '- result: ' . json_decode(FFI::string($result)) . PHP_EOL;
 echo '- time: ' . number_format(microtime(true) - $start, 4) . 's' . PHP_EOL;
+FFI::free($result);
+unset($ffi);
