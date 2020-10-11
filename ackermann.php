@@ -13,12 +13,12 @@
  *
  * Usage:
  * go build -o ackermann.so -buildmode=c-shared ackermann.go
- * php ackermann.php
+ * php -dopcache.enable_cli=1 -dffi.enable=1 ackermann.php
  *
  * Example output:
  * PHP
  * - result: 16381
- * - time: 13.5768s
+ * - time: 4.3119s
  * Go
  * - result: 16381
  * - time: 0.4876s
@@ -26,7 +26,7 @@
  * - result: 16381
  * - time: 0.4840s
  *
- * In this example Go 1.14 is 27 times faster than PHP 7.4.
+ * In this example Go 1.14 is 9 times faster than PHP 7.4.
  *
  * Go is a statically typed, compiled programming language that offers more performance and concurrency.
  * Combining PHP and Go gives a lot of new opportunities.

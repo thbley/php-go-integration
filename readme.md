@@ -16,13 +16,13 @@ of the recursive ackermann function (see https://en.wikipedia.org/wiki/Ackermann
 In this example Go 1.14 is
 - 27 times faster than PHP 7.4 with OpCache disabled
 - 9 times faster than PHP 7.4 with Opcache enabled
-- 5 times faster than PHP 8.0 with OpCache and JTT enabled
+- 5 times faster than PHP 8.0 with OpCache and JIT enabled
 
 Usage:
 
     go build -o ackermann.so -buildmode=c-shared ackermann.go
 
-    php -dffi.enable=1 ackermann.php
+    php -dopcache.enable_cli=1 -dffi.enable=1 ackermann.php
 
     or:
 
@@ -31,15 +31,15 @@ Usage:
 
 Example output (php7.4 -dopcache.enable_cli=0 -dffi.enable=1 ackermann.php):
 
-PHP
-- result: 16381
-- time: 13.0677s
-Go
-- result: 16381
-- time: 0.4877s
-Go (using json as input/output)
-- result: 16381
-- time: 0.4826s
+    PHP
+    - result: 16381
+    - time: 13.0677s
+    Go
+    - result: 16381
+    - time: 0.4877s
+    Go (using json as input/output)
+    - result: 16381
+    - time: 0.4826s
 
 Example output (php7.4 -dopcache.enable_cli=1 -dffi.enable=1 ackermann.php):
 
@@ -55,15 +55,15 @@ Example output (php7.4 -dopcache.enable_cli=1 -dffi.enable=1 ackermann.php):
 
 Example output (php8.0 -dopcache.enable=1 -dopcache.enable_cli=1 -dopcache.jit=1205 -dopcache.jit_buffer_size=64M -dffi.enable=1 ackermann.php):
 
-PHP
-- result: 16381
-- time: 2.5359s
-Go
-- result: 16381
-- time: 0.4857s
-Go (using json as input/output)
-- result: 16381
-- time: 0.4825s
+    PHP
+    - result: 16381
+    - time: 2.5359s
+    Go
+    - result: 16381
+    - time: 0.4857s
+    Go (using json as input/output)
+    - result: 16381
+    - time: 0.4825s
 
 Requirements:
 
