@@ -13,7 +13,10 @@ Go code can compiled as a shared object file (.so) and loaded in PHP using PHP-F
 This example compares the performance of PHP and Go using implementations
 of the recursive ackermann function (see https://en.wikipedia.org/wiki/Ackermann_function).
 
-In this example Go 1.14 is 27 times faster than PHP 7.4.
+In this example Go 1.14 is
+- 27 times faster than PHP 7.4 with OpCache disabled
+- 9 times faster than PHP 7.4 with Opcache enabled
+- 5 times faster than PHP 8.0 with OpCache and JTT enabled
 
 Usage:
 
@@ -26,17 +29,41 @@ Usage:
     docker build -t php-ffi .
     docker run -it --rm -v $(pwd):/code php-ffi php /code/ackermann.php
 
-Example output:
+Example output (php7.4 -dopcache.enable_cli=0 -dffi.enable=1 ackermann.php):
+
+PHP
+- result: 16381
+- time: 13.0677s
+Go
+- result: 16381
+- time: 0.4877s
+Go (using json as input/output)
+- result: 16381
+- time: 0.4826s
+
+Example output (php7.4 -dopcache.enable_cli=1 -dffi.enable=1 ackermann.php):
 
     PHP
     - result: 16381
-    - time: 13.5768s
+    - time: 4.3119s
     Go
     - result: 16381
     - time: 0.4876s
     Go (using json as input/output)
     - result: 16381
     - time: 0.4840s
+
+Example output (php8.0 -dopcache.enable=1 -dopcache.enable_cli=1 -dopcache.jit=1205 -dopcache.jit_buffer_size=64M -dffi.enable=1 ackermann.php):
+
+PHP
+- result: 16381
+- time: 2.5359s
+Go
+- result: 16381
+- time: 0.4857s
+Go (using json as input/output)
+- result: 16381
+- time: 0.4825s
 
 Requirements:
 
